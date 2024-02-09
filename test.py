@@ -2,6 +2,11 @@
 import random
 import requests
 from bs4 import BeautifulSoup
+from urllib.request import urlopen
+import urllib
+ 
+class AppURLopener(urllib.request.FancyURLopener):
+    version = "Mozilla/5.0"
 
 def generate_random_tarot_cards():
     # Приклад генерації три випадкових карт таро
@@ -11,7 +16,22 @@ def generate_random_tarot_cards():
 def search_tarot_meaning(cards):
     # Створення URL для пошуку значень карт таро
     search_query = "+".join(cards)
-    url = f"https://biddytarot.com/blog/ultimate-guide-tarot-card-combinations/"
+        #url = f"search.api.cnn.io/content?q={}"
+
+
+#source = requests.get(url).text 
+#json_reponse = json.loads(source)
+    #headers = {'Referer': 'https://biddytarot.com/blog/ultimate-guide-tarot-card-combinations/'}
+   # url = requests.get('https://biddytarot.com/blog/ultimate-guide-tarot-card-combinations/' , headers=headers)
+    url = 'https://biddytarot.com/blog/ultimate-guide-tarot-card-combinations/' 
+    opener = AppURLopener()
+    response = opener.open('https://biddytarot.com/blog/ultimate-guide-tarot-card-combinations/' )
+    #headers = {'User-Agent': 'Mozilla/6,.0'}
+    #page = urlopen(url)
+    #html = page.read().decode("utf-8")
+    #soup = BeautifulSoup(html, "html.parser")
+   # soup = BeautifulSoup(random_tarot_cards.content, "lxml")
+   # film_name = soup.find(class_="fright fx-1").find("h1").text
 
     # Відправлення запиту на веб-сайт
     response = requests.get(url)
