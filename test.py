@@ -11,7 +11,7 @@ def generate_random_tarot_cards():
 def search_tarot_meaning(cards):
     # Створення URL для пошуку значень карт таро
     search_query = "+".join(cards)
-    url = f"https://atarotcards.com/ru/tarotcombinations/"
+    url = f"https://biddytarot.com/blog/ultimate-guide-tarot-card-combinations/"
 
     # Відправлення запиту на веб-сайт
     response = requests.get(url)
