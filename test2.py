@@ -1,11 +1,41 @@
-
-import csv
-import random
+import random # Бібліотека додающа рандом, необхідна для випадкового видання карт Таро
+import nltk # Імпортуємо бібліотеку, котра надає інструмент для обробки звичайної мови 
+from nltk import word_tokenize # Поділяє текст на роздільні слова
+import csv      
 import gspread
 from google.oauth2 import service_account
 from gspread.exceptions import APIError
+import time
 
+nltk.download('punkt') # додаткові данні
 
+def question_check(question):
+    words = word_tokenize(question.lower()) #Токенізація повідомлення
+# Перевірка повідомлення від користувача на присутність знаку питання та присутності більше одного слова
+    if words [-1] == '?' and len(words) > 1:
+        return True
+    return False
+
+#Токенізація та перевірка питання (Якщо я щось забув, додай, будь ласка, та подумай, чи потрібно нам робити так, щоб можна було запитати англійською мовою) 
+def open_question_check(question):
+    open_key_words = ["Що","Де","Коли","Чому","Хто","Як","Які","Чи","Яка","Яке"]
+#Токенізація та перевірка наявності ключових слів
+    words = word_tokenize(question.lower())
+    for key_word in open_key_words:
+        if key_word in words:
+            return True
+    return False
+
+#Надо придумать что будет возвращать этот класс, по идее надо будет туда встаивть функцию которую мы пропишем потом с аи'шкой
+class TarotMeanings:
+    def predict(self, cards):
+        return ["Chto to poka chto"]
+Tarot_Cards = ["Жрець","Блазень","Маг","Жриця","Імператриця","Імператор","Ієрофант","Закохані","Колісниця","Сила","Відлюдник","Колесо Фортуни","Справедливість","Повішений","Смерть","Помірність","Диявол","Башта","Зірка","Місяць","Сонце","Страшний суд","Світ","Туз жезлів","Двійка жезлів","Трійка жезлів","Четвірка жезлів","П’ятірка жезлів","Шістка жезлів","Сімка жезлів","Вісімка жезлів","Дев’ятка жезлів","Десятка жезлів","Паж жезлів","Лицар жезлів","Королева жезлів","Король жезлів","Туз мечів","Двійка мечів","Трійка мечів","Четвірка мечів","П’ятірка мечів","Шістка мечів","Сімка мечів","Вісімка мечів","	Дев’ятка мечів","Десятка мечів","Паж мечів","Лицар мечів","	Королева мечів","Король мечів","Туз пентаклей","Двійка пентаклей","Трійка пентаклей","Четвірка пентаклей","П’ятірка пентаклей","Шістка пентаклей","Сімка пентаклей","Вісімка пентаклей","Дев’ятка пентаклей","Десятка пентаклей","Паж пентаклей","Лицар пентаклей","Королева пентаклей","Король пентаклей"] #Напиши сюда названия всех карт
+
+#Ініціалізація значення
+meanings = TarotMeanings()
+
+user_question = input("Enter your question: ")
 
 credentials_path = 'C:\\Users\\Tkach\\Downloads\\glass-ally-414719-d0c89a69ae01.json'
 
@@ -19,8 +49,8 @@ client = gspread.authorize(credentials)
 spreadsheet = client.open_by_key(spreadsheet_id)
 
 
-
-def get_value(combination):
+# Функція для отримання комбінації для вибраної пари карт
+def get_combination_for_pair(card1 , card2):
     try:
         # Отримання аркуша за замовчуванням
         worksheet = spreadsheet.sheet1
@@ -29,18 +59,36 @@ def get_value(combination):
         all_records = worksheet.get_all_records()
 
         for row in all_records:
-            if row['Комбінації карт'] == combination:
+            if row['Комбінації карт'] == search_cards:
+                iteration += 1
                 return row['Значення комбінацій карт']
 
-        return 'Value not found'
+        return 'Combination not found'
     except APIError as e:
         print(f'APIError: {e.response}')
         return 'APIError'
-# Random combination
-random_combination = "Суд and Десятка чаш"
 
-# Get value for the random combination
-value = get_value(random_combination)
+iteration = 0
 
-print(f'Random combination: {random_combination}')
-print(f'Corresponding value: {value}')
+# Рандомний вибір двох карт зі списку
+while True: 
+    random_cards = random.sample(Tarot_Cards, 2)
+    card1, card2 = random_cards
+
+  
+    search_cards = card1 + " " + "and" + " " + card2
+
+    # Пошук комбінації для кожної пари карт
+    combination = get_combination_for_pair(card1 , card2)
+
+    
+
+    # Додайте затримку між ітераціями, якщо потрібно
+    time.sleep(2)
+    print('\n') 
+    
+
+    if iteration == 1:
+        print(f'Комбінація для пари {card1} і {card2}: {combination}')
+        break
+

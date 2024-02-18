@@ -1,6 +1,11 @@
 import random # Бібліотека додающа рандом, необхідна для випадкового видання карт Таро
 import nltk # Імпортуємо бібліотеку, котра надає інструмент для обробки звичайної мови 
 from nltk import word_tokenize # Поділяє текст на роздільні слова
+import csv      
+import gspread
+from google.oauth2 import service_account
+from gspread.exceptions import APIError
+
 
 nltk.download('punkt') # додаткові данні
 
@@ -31,3 +36,41 @@ Tarot_Cards = ["Блазень","Маг","Верховна жриця","Імпе
 meanings = TarotMeanings()
 
 user_question = input("Enter your question: ")
+
+credentials_path = 'C:\\Users\\Tkach\\Downloads\\glass-ally-414719-d0c89a69ae01.json'
+
+
+credentials = service_account.Credentials.from_service_account_file(
+    credentials_path,
+    scopes=['https://www.googleapis.com/auth/spreadsheets']
+)
+spreadsheet_id = '1cjoEtpVmRHn8CXZDJWtXkd86bVgmsXjqw5FeNIiay2E'
+client = gspread.authorize(credentials)
+spreadsheet = client.open_by_key(spreadsheet_id)
+
+
+
+def get_value(combination):
+    try:
+        # Отримання аркуша за замовчуванням
+        worksheet = spreadsheet.sheet1
+
+        # Отримання всіх записів у вигляді списку словників, де ключі - це назви стовпців
+        all_records = worksheet.get_all_records()
+
+        for row in all_records:
+            if row['Комбінації карт'] == combination:
+                return row['Значення комбінацій карт']
+
+        return 'Value not found'
+    except APIError as e:
+        print(f'APIError: {e.response}')
+        return 'APIError'
+    
+
+
+# Get value for the random combination
+value = get_value(random_combination)
+
+print(f'Random combination: {random_combination}')
+print(f'Corresponding value: {value}')
