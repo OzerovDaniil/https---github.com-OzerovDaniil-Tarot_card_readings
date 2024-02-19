@@ -60,15 +60,15 @@ def get_combination_for_pair(card1 , card2):
 
         for row in all_records:
             if row['Комбінації карт'] == search_cards:
-                iteration += 1
+                
                 return row['Значення комбінацій карт']
 
-        return 'Combination not found'
+        
     except APIError as e:
         print(f'APIError: {e.response}')
         return 'APIError'
 
-iteration = 0
+
 
 # Рандомний вибір двох карт зі списку
 while True: 
@@ -88,7 +88,7 @@ while True:
     print('\n') 
     
 
-    if iteration == 1:
+    if combination:
         print(f'Комбінація для пари {card1} і {card2}: {combination}')
         break
 
