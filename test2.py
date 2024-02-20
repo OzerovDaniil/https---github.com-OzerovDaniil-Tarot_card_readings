@@ -43,7 +43,6 @@ while True:
         if open_question_check(user_question) is False:
             print("Помилка, ви задали не відкрите питання")
         elif open_question_check(user_question) is True:
-   
             break
 
 credentials_path = 'glass-ally-414719-d0c89a69ae01.json'
