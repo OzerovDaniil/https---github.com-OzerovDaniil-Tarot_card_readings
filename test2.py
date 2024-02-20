@@ -10,7 +10,7 @@ import time
 nltk.download('punkt') # додаткові данні
 
 def question_check(user_question):
-    words = word_tokenize(user_question.lower()) #Токенізація повідомлення
+    words = word_tokenize(user_question) #Токенізація повідомлення
 # Перевірка повідомлення від користувача на присутність знаку питання та присутності більше одного слова
     if words [-1] == '?' and len(words) > 1:
         return True
@@ -46,7 +46,7 @@ while True:
    
             break
 
-credentials_path = 'C:\\Users\\Tkach\\Downloads\\glass-ally-414719-d0c89a69ae01.json'
+credentials_path = 'glass-ally-414719-d0c89a69ae01.json'
 
 
 credentials = service_account.Credentials.from_service_account_file(
