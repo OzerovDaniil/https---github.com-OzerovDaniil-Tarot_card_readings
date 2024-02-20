@@ -10,7 +10,7 @@ import time
 nltk.download('punkt') # додаткові данні
 
 def question_check(user_question):
-    words = word_tokenize(user_question.lower()) #Токенізація повідомлення
+    words = word_tokenize(user_question) #Токенізація повідомлення
 # Перевірка повідомлення від користувача на присутність знаку питання та присутності більше одного слова
     if words [-1] == '?' and len(words) > 1:
         return True
@@ -43,7 +43,6 @@ while True:
         if open_question_check(user_question) is False:
             print("Помилка, ви задали не відкрите питання")
         elif open_question_check(user_question) is True:
-   
             break
 
 credentials_path = 'C:\\Users\\Tkach\\Downloads\\glass-ally-414719-d0c89a69ae01.json'
