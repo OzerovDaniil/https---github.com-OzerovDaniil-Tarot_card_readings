@@ -18,7 +18,7 @@ def question_check(question):
 
 #Токенізація та перевірка питання (Якщо я щось забув, додай, будь ласка, та подумай, чи потрібно нам робити так, щоб можна було запитати англійською мовою) 
 def open_question_check(question):
-    open_key_words = ["Що","Де","Коли","Чому","Хто","Як","Які","Чи","Яка","Яке"]
+    open_key_words = ["Що","Чому","Як","Які","Яка","Яке"]
 #Токенізація та перевірка наявності ключових слів
     words = word_tokenize(question.lower())
     for key_word in open_key_words:
@@ -35,14 +35,23 @@ Tarot_Cards = ["Жрець","Блазень","Маг","Жриця","Імпера
 #Ініціалізація значення
 meanings = TarotMeanings()
 
-user_question = input("Enter your question: ")
+while True:
+    user_question = input("Enter your question: ")
+    if question_check(user_question) is False:
+        print("Помилка, ви не поставили знак питання, або написали меньше одного слова")
+    elif question_check(user_question) is True:
+        if open_question_check(user_question.lower("Що","Чому","Як","Які","Яка","Яке")) is False:
+            print("Помилка, ви задали не відкрите питання")
+        elif open_question_check(user_question.lower("Що","Чому","Як","Які","Яка","Яке")) is True:
+   
+            break
 
 credentials_path = 'C:\\Users\\Tkach\\Downloads\\glass-ally-414719-d0c89a69ae01.json'
 
 
 credentials = service_account.Credentials.from_service_account_file(
-    credentials_path,
-    scopes=['https://www.googleapis.com/auth/spreadsheets']
+credentials_path,
+scopes=['https://www.googleapis.com/auth/spreadsheets']
 )
 spreadsheet_id = '1cjoEtpVmRHn8CXZDJWtXkd86bVgmsXjqw5FeNIiay2E'
 client = gspread.authorize(credentials)
