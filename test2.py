@@ -9,18 +9,18 @@ import time
 
 nltk.download('punkt') # додаткові данні
 
-def question_check(question):
-    words = word_tokenize(question.lower()) #Токенізація повідомлення
+def question_check(user_question):
+    words = word_tokenize(user_question.lower()) #Токенізація повідомлення
 # Перевірка повідомлення від користувача на присутність знаку питання та присутності більше одного слова
     if words [-1] == '?' and len(words) > 1:
         return True
     return False
 
 #Токенізація та перевірка питання (Якщо я щось забув, додай, будь ласка, та подумай, чи потрібно нам робити так, щоб можна було запитати англійською мовою) 
-def open_question_check(question):
+def open_question_check(user_question):
     open_key_words = ["Що","Чому","Як","Які","Яка","Яке"]
 #Токенізація та перевірка наявності ключових слів
-    words = word_tokenize(question.lower())
+    words = word_tokenize(user_question)
     for key_word in open_key_words:
         if key_word in words:
             return True
@@ -40,9 +40,9 @@ while True:
     if question_check(user_question) is False:
         print("Помилка, ви не поставили знак питання, або написали меньше одного слова")
     elif question_check(user_question) is True:
-        if open_question_check(user_question.lower("Що","Чому","Як","Які","Яка","Яке")) is False:
+        if open_question_check(user_question) is False:
             print("Помилка, ви задали не відкрите питання")
-        elif open_question_check(user_question.lower("Що","Чому","Як","Які","Яка","Яке")) is True:
+        elif open_question_check(user_question) is True:
    
             break
 
