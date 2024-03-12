@@ -1,7 +1,7 @@
 import random # Бібліотека додающа рандом, необхідна для випадкового видання карт Таро
 import nltk # Імпортуємо бібліотеку, котра надає інструмент для обробки звичайної мови 
 from nltk import word_tokenize # Поділяє текст на роздільні слова
-import csv      
+from tkinter import *  
 import gspread
 from google.oauth2 import service_account
 from gspread.exceptions import APIError
