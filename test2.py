@@ -1,3 +1,4 @@
+# Ваш Django views.py 
 import random # Бібліотека додающа рандом, необхідна для випадкового видання карт Таро
 import nltk # Імпортуємо бібліотеку, котра надає інструмент для обробки звичайної мови 
 from nltk import word_tokenize # Поділяє текст на роздільні слова
@@ -6,9 +7,17 @@ import gspread
 from google.oauth2 import service_account
 from gspread.exceptions import APIError
 import time
+from django.shortcuts import render 
+from django.http import JsonResponse 
+from django.urls import path
+from myapp import views
 
-nltk.download('punkt') # додаткові данні
-
+urlpatterns = [
+    path('', views.home, name='home'),
+]
+from .models import TarotCard # Предполагаем, что у вас есть модель для карт Таро 
+import tkinter
+ 
 def question_check(user_question):
     words = word_tokenize(user_question) #Токенізація повідомлення
 # Перевірка повідомлення від користувача на присутність знаку питання та присутності більше одного слова
@@ -78,25 +87,61 @@ def get_combination_for_pair(card1 , card2):
 
 
 
-# Рандомний вибір двох карт зі списку
-while True: 
-    random_cards = random.sample(Tarot_Cards, 2)
-    card1, card2 = random_cards
-
-  
-    search_cards = card1 + " " + "and" + " " + card2
-
-    # Пошук комбінації для кожної пари карт
-    combination = get_combination_for_pair(card1 , card2)
-
-    
-
-    # Додайте затримку між ітераціями, якщо потрібно
-    time.sleep(2)
-    print('\n') 
-    
-
-    if combination:
-        print(f'Комбінація для пари {card1} і {card2}: {combination}')
-        break
-
+ 
+    while True: 
+        random_cards = random.sample(Tarot_Cards, 2) 
+        card1, card2 = random_cards 
+ 
+        search_cards = card1 + " " + "and" + " " + card2 
+ 
+        combination = get_combination_for_pair(card1, card2) 
+ 
+        time.sleep(2) 
+        print('\n') 
+ 
+        if combination: 
+            print(f'Комбінація для пари {card1} і {card2}: {combination}') 
+            break 
+ 
+    # Возвращаем JsonResponse с результатами 
+    response_data = { 
+        'card1': card1, 
+        'card2': card2, 
+        'combination': combination, 
+    } 
+     
+    return JsonResponse(response_data) 
+ 
+# Ваш urls.py в Django приложении 
+ 
+from django.urls import path 
+from .views import tarot_reading 
+ 
+urlpatterns = [ 
+    path('tarot-reading/', tarot_reading, name='tarot_reading'), 
+] 
+ 
+# Пример использования в шаблоне (если используется) 
+ 
+<!-- templates/your_app/your_template.html --> 
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>Tarot Reading</title> 
+</head> 
+<body> 
+    <h1>Welcome to Tarot Reading</h1> 
+    <button id="getReading">Get Reading</button> 
+    <div id="result"></div> 
+ 
+    <script> 
+        document.getElementById('getReading').addEventListener('click', function () { 
+            fetch('/tarot-reading/') 
+                .then(response => response.json()) 
+                .then(data => { 
+                    document.getElementById('result').innerHTML = Карта 1: ${data.card1}, Карта 2: ${data.card2}, Комбінація: ${data.combination}; 
+                }); 
+        }); 
+    </script> 
+</body> 
+</html>

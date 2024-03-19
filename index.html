@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tarot Reading</title>
+</head>
+<body>
+    <h1>Welcome to Tarot Reading</h1>
+    <button id="getReading">Get Reading</button>
+    <div id="result"></div>
+
+    <!-- Підключення бібліотеки Axios для виконання запитів -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        // Функція для виконання запиту до сервера Django
+        function getTarotReading() {
+            // Виконання GET запиту до URL '/tarot-reading/'
+        axios.get('/Tarot card readings/    ')
+                .then(response => {
+                    // Обробка результатів, отриманих від сервера
+                    const data = response.data;
+                    const resultElement = document.getElementById('result');
+                    resultElement.innerHTML = `Карта 1: ${data.card1}, Карта 2: ${data.card2}, Комбінація: ${data.combination}`;
+                })
+                .catch(error => {
+                    console.error('Помилка отримання даних:', error);
+                });
+        }
+
+        // Додавання слухача подій для кнопки 'Get Reading'
+        document.getElementById('getReading').addEventListener('click', getTarotReading);
+    </script>
+</body>
+</html>
