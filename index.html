@@ -1,34 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="uk">
 <head>
-    <title>Tarot Reading</title>
+    <meta charset="UTF-8">
+    <title>Ворожіння на картах Таро</title>
 </head>
 <body>
-    <h1>Welcome to Tarot Reading</h1>
-    <button id="getReading">Get Reading</button>
-    <div id="result"></div>
-
-    <!-- Підключення бібліотеки Axios для виконання запитів -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <script>
-        // Функція для виконання запиту до сервера Django
-        function getTarotReading() {
-            // Виконання GET запиту до URL '/tarot-reading/'
-        axios.get('/Tarot card readings/    ')
-                .then(response => {
-                    // Обробка результатів, отриманих від сервера
-                    const data = response.data;
-                    const resultElement = document.getElementById('result');
-                    resultElement.innerHTML = `Карта 1: ${data.card1}, Карта 2: ${data.card2}, Комбінація: ${data.combination}`;
-                })
-                .catch(error => {
-                    console.error('Помилка отримання даних:', error);
-                });
-        }
-
-        // Додавання слухача подій для кнопки 'Get Reading'
-        document.getElementById('getReading').addEventListener('click', getTarotReading);
-    </script>
+    <h1>Ворожіння на картах Таро</h1>
+    <form action="{C:\Users\Tkach\OneDrive\Desktop\https---github.com-OzerovDaniil-Tarot_card_readings\Tarot card readings.py}" method="post">
+        <label for="question">Ваше питання:</label>
+        <br>
+        <input type="text" name="question" id="question">
+        <br>
+        <input type="submit" value="Дізнатися відповідь">
+    </form>
+    {% if reading %}
+        <p>Випалі карти: {{ reading.combination.card1.name }} і {{ reading.combination.card2.name }}</p>
+        <p>Значення комбінації:</p>
+        <p>{{ reading.combination.meaning }}</p>
+    {% endif %}
 </body>
 </html>
