@@ -18,6 +18,9 @@ def index(request):
 def about(request):
     return render(request, 'tarot_app/about.html')
 
+def taro(request):
+    return render(request, 'tarot_app/taroreading.html')
+
 # def question_check(user_question):
 #     words = word_tokenize(user_question)
 #     if words[-1] == '?' and len(words) > 1:

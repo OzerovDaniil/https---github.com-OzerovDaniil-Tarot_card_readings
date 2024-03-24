@@ -1,0 +1,15 @@
+{% extends 'tarot_app/layout.html' %}
+
+{% block title %}Розклад карт таро{% endblock %}
+
+{% block content %}
+    <div class="features">
+         <h1>Розклад карт таро</h1>
+         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias inventore quod dicta rerum in id soluta commodi tempore illo nam. Iure adipisci tempore repudiandae nostrum quibusdam tenetur maxime, optio numquam.</p>
+         <form method="post" action="{% url 'taro_cards_reading' %}">
+            {% csrf_token %}
+            <input type="text" name="tarot_query" placeholder="Введіть свій запит...">
+            <button type="submit" class="btn btn-danger">Зробити розклад таро</button>
+        </form>
+    </div>
+{% endblock %}
