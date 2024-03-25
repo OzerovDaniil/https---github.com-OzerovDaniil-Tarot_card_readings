@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "glass-ally-414719",
+  "private_key_id": "d0c89a69ae012b112a1290f2a47ff0febb0fa928",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDZPJEoEnhoy4SQ\n2NfjWV/DJUsHeBFeLKu4+KYnWkQ2ySpltdTL6W1o1YNvMuGq2r2eLwQUXcVqufCV\nfdiBaujVg7VAA7BvRbBx0GVb+oHDts9V6UkmuClHnA+VGmrWc04oVp+9hbIwifZx\nB2AG4lCqQP1fhqcMDRgczz+Hhn6mEPTI0Ndusvomb9Kf1ppEJeoXLMeNz862l+T/\nlssIxRqqPb85Svxz+yjnnXM/8ks4BwdZyXHJ57QPIhFTfpT7eR27/Sd5gmk9wbvh\nM5PfJC669yJYLbLyVbsVfIUQzSfL6wi2BDrjjpZFMzd5Iny8/sLJsZftVuzv5YlB\nk1CGFUHbAgMBAAECggEACL4Yw2mW4fTK1X98lMA8i+B82ASbglQ+5vdOzIej9iZ7\nZ9N9CGXRCuaI3xlHnrYl6m9O9Tje4JAyH/oMFA1G6Izf5v8fAyNlWfc+lQiMX2GE\nj5sPYBkKREECGYiSIyZJz3LJA/oU9UIgImVfFnfWMjviVo1XPLNsNICcuGoPv8Qc\n8lrwz8IDHoHRsrihSY3+OpcYcWLnN4IPETZMX6x6oftLd9BkptQORsy9elLCIX61\ncWs0ZJn8CQZTagmo8YY+Oafi2wdtPlFBcTYPGk0MUkjWny2+1b+PogpHqspEdmo+\nwRzAEeYzSOlrAJ2b9S3OaZfyIhnaGEFZ8CW3k7FZUQKBgQDuJdWSLdnke6OAqr7x\n4KXIvv1h63BF2/ghmtMBMdVliwBwNLANmrtCCQSfjHStbQIE3jhmb+HTSoL2iFjO\nHG5pPBfvGvUeBfxf1oOJRIVSjhMWMNjBL8YzI6pT280huuUg+doO6E+TiBL/1i0C\nFs1mbsgV3AuCsLjnNTzzb6l5ywKBgQDphW/sIajnzb8NIwTsjni53mPOm7DcuU4g\ni+TH8xk4WmfTl/VM+hW3591fwUAh3otlw6tE7ZGJUIyez4IVkgFc6UsiP14k2tWk\nBCLJS4yZwL+okRfkLAc4MtxdEnPXmtSU27WVR11fhM94bALd0XToIjGBewtus4IH\nSJj5gtiWMQKBgQCM5nepCFXNuFUxkFRvGYIc9ttFrx37Rz1U7JyBLXHbpVU6DgJH\n2k+Gr307xMdXwJIcPTpTaUjMUV6Q7HTWZb3xp2tlvaZfAB2kum+SrKbRBFxImdf0\n3QZARY7GFNsWZNSiIRGiFlLWsADFu3tfrAwU2eCqBkoNJfAQY9BPG7bC5wKBgQCP\nG9JqUHp1jHZP860Z13oO1kYuIOWzbvB9K55KFyXWjjjgyFhxEzXqHXNiMkk+OGcP\nN2mndTviffWfgaXD2FVzfhkoZNMqHN4ehNZYrC7/LsuF311X3M+T1j+L3joV4HH0\nw+y1DiYf2oFW2EKtc6aEeCgEpMZt0h6Wnhv5lQFskQKBgBc/0kdTJx02jyLaTbdL\nQqGo452Sbnpw7dfq/o2/aVmeMV9wxJEGgGWBiTyU2wYaTRzT+8FAPHF8/6cPnjfj\nvKkqPe0KcTxSHRZ+zyd9PBQL2jR/K+co7uLWF+Qo71lQ3aCKE4WkjU/Eed5l8Rtp\n0l/bkLLX9OlFYainXOPgVxk7\n-----END PRIVATE KEY-----\n",
+  "client_email": "tarodatabase@glass-ally-414719.iam.gserviceaccount.com",
+  "client_id": "104994416384884306703",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/tarodatabase%40glass-ally-414719.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

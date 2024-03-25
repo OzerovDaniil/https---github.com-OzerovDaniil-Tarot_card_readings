@@ -4,12 +4,52 @@
 
 {% block content %}
     <div class="features">
-         <h1>Розклад карт таро</h1>
-         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias inventore quod dicta rerum in id soluta commodi tempore illo nam. Iure adipisci tempore repudiandae nostrum quibusdam tenetur maxime, optio numquam.</p>
-         <form method="post" action="{% url 'taro_cards_reading' %}">
+        <h1>Розклад карт таро</h1>
+        <!-- Форма -->
+        <form id="myFormId" method="post" action="{% url 'taro_cards_reading' %}">
             {% csrf_token %}
-            <input type="text" name="tarot_query" placeholder="Введіть свій запит...">
+            <input type="text" name="tarot_query" placeholder="Введіть свій запит..." required>
             <button type="submit" class="btn btn-danger">Зробити розклад таро</button>
-        </form>
+        </form>        
+        <!-- Відображення вибраних карт -->
+        <div id="result">
+            {% if combination and value %}
+                <h2>Обрана комбінація карт:</h2>
+                <p>{{ combination }}</p>
+                <h2>Значення комбінації:</h2>
+                <p>{{ value }}</p>
+            {% endif %}
+        </div>
+        <!-- Відображення повідомлення про помилку -->
+        {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+        {% endif %}
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('#myFormId'); // Замініть '#yourFormId' на селектор вашої форми
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Зупиняємо стандартну подію надсилання форми
+                const formData = new FormData(form);
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}' // Додаємо CSRF-токен для захисту від CSRF-атак
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Оновлюємо DOM з отриманими даними
+                    document.querySelector('#result').innerHTML = data.result;
+                })
+                .catch(error => console.error('Помилка:', error));
+            });
+        });
+    </script>
 {% endblock %}
+
+
+
+
